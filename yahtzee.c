@@ -41,54 +41,15 @@ int evaluateDice(int move){
 	int score = 0;
 	int success = 0;
 	switch(move){
-		case 1:
+		case 1 ... 6:
 		//singles
-		score += multiples[0] * 1;
+		score += multiples[move-1] * move;
 		break;
-		
-		case 2:
-		//singles
-		score += multiples[1] * 2;
-		break;
-		
-		case 3:
-		//singles
-		score += multiples[2] * 3;
-		break;
-		
-		case 4:
-		//singles
-		score += multiples[3] * 4;
-		break;
-		
-		case 5:
-		//singles
-		score += multiples[4] * 5;
-		break;
-		
-		case 6:
-		//singles
-		score += multiples[5] * 6;
-		break;
-		
-		case 9:
-		//3 of a kind
+
+		case 9 ... 10:
+		//3 of a kind and 4 of a kind
 		for(int a = 0; a < M; a++){
-			if(multiples[a] >= 3){
-				success++;
-			}
-		}
-		if(success > 0){
-			for(int a = 0; a < N; a++){
-				score += dice[a];
-			}
-		}
-		break;
-		
-		case 10:
-		//4 of a kind
-		for(int a = 0; a < M; a++){
-			if(multiples[a] >= 4){
+			if(multiples[a] >= 3 && move == 9 || multiples[a] >= 4 && move == 10){
 				success++;
 			}
 		}
@@ -111,26 +72,16 @@ int evaluateDice(int move){
 		}
 		break;
 		
-		case 12:
-		//small straight
+		case 12 ... 13:
+		//small straight and large straight
 		for(int a = 0; a < M; a++){
 			if(multiples[a] > 0){
 				success++;
 			}
 		}
-		if(success > 3){
+		if(move == 12 && success > 3){
 			score += 30;
-		}
-		break;
-		
-		case 13:
-		//large straight
-		for(int a = 0; a < M; a++){
-			if(multiples[a] > 0){
-				success++;
-			}
-		}
-		if(success > 4){
+		}else if(move == 13 && success > 4){
 			score += 40;
 		}
 		break;
