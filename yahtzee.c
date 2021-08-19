@@ -48,27 +48,27 @@ int evaluateDice(int move){
 		
 		case 2:
 		//singles
-		score += multiples[1] * 1;
+		score += multiples[1] * 2;
 		break;
 		
 		case 3:
 		//singles
-		score += multiples[2] * 2;
+		score += multiples[2] * 3;
 		break;
 		
 		case 4:
 		//singles
-		score += multiples[3] * 3;
+		score += multiples[3] * 4;
 		break;
 		
 		case 5:
 		//singles
-		score += multiples[4] * 4;
+		score += multiples[4] * 5;
 		break;
 		
 		case 6:
 		//singles
-		score += multiples[5] * 5;
+		score += multiples[5] * 6;
 		break;
 		
 		case 9:
@@ -191,6 +191,9 @@ int main(){
 			scores[7] = 0;
 		}else if(a == 6){
 			score = scores[a];
+			if(scores[a] >= 63){
+				scores[7] = 35;
+			}
 		}
 		printf("%s\t%d\n", moves[a], scores[a]);
 	}
